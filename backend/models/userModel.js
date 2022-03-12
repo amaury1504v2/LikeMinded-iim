@@ -11,7 +11,7 @@ const userSchema = mongoose.Schema(
       default:
         "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
     },
-    hobbies: { type: Array, default: [], required: false }
+    hobbies: { type: Array, default: [], required: true }
   },
   { timestaps: true }
 );
