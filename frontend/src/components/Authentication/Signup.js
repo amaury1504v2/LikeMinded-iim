@@ -1,5 +1,7 @@
-import { Box, Button, FormControl, FormLabel, HStack, Input, InputGroup, InputRightElement, Tag, TagCloseButton, TagLabel, VStack } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import { Box, Button, FormControl, FormLabel, Input, InputGroup, InputRightElement, VStack, Badge } from '@chakra-ui/react'
+import React, { useState } from 'react';
+import { Autocomplete } from 'chakra-ui-simple-autocomplete';
+import { CheckCircleIcon, CloseIcon, SmallAddIcon } from "@chakra-ui/icons";
 
 const Signup = () => {
   const [show, setShow] = useState(false);
@@ -9,26 +11,11 @@ const Signup = () => {
   const [password, setPassword] = useState();
   const [confirmpassword, setConfirmpassword] = useState();
   const [pic, setPic] = useState();
-  const [hobbies, setHobbies] = useState();
-  
-  let hobbiesArray = ["Test1", "Test2", "Nouveau"];
-  let hobbiesList = hobbiesArray.map((hobbiesArray) => 
-    <HStack spacing={4}>
-        <Tag
-        size='lg'
-        borderRadius='full'
-        variant='solid'
-        colorScheme='blue'
-        >
-        <TagLabel>{hobbiesArray}</TagLabel>
-        <TagCloseButton />
-        </Tag>
-    </HStack>
-  );
+  const [hobbies, setHobbies] = useState([]);
+  //const [result, setResult] = useState([]);
+  const options = [ ];
 
   const handleClick = () => setShow(!show);
-
-  const addToHobbies = () => setShow(!show);
 
   const postDetails = (pics) => {
 
@@ -96,19 +83,29 @@ const Signup = () => {
         </FormControl>
         <FormControl id="hobbies" paddingBottom="15px">
             <FormLabel>Hobbies</FormLabel>
-            <InputGroup size="md" minWidth="500px">
-                {hobbiesList}
-                <Input
-                    placeholder="Enter Your Hobbies"
-                    onChange={(e) => setHobbies(e.target.value)}
+            <Box maxW="lg">
+                <Autocomplete
+                options={options}
+                result={hobbies}
+                setResult={(options) => {
+                    setHobbies(options);
+                }}
+                placeholder="Enter a Hobby"
+                renderBadge={(option) => (
+                    <Badge
+                    borderRadius="full"
+                    px="3" py="2"
+                    colorScheme="blue"
+                    mx={1} my={1}
+                    cursor="pointer"
+                    >
+                    {option.label}
+                    <CloseIcon ml={2} w={2} h={2} mb="4px" />
+                    </Badge>
+                )}
+                createtext="Add Hobby"
                 />
-                <InputRightElement width="4rem">
-                    <Button onClick={addToHobbies}>
-                        Add
-                    </Button>
-                </InputRightElement>
-            </InputGroup>
-                
+            </Box>
         </FormControl>
 
         <Button
