@@ -1,4 +1,4 @@
-import { Button, FormControl, FormLabel, Input, InputGroup, InputRightElement, VStack } from '@chakra-ui/react'
+import { Box, Button, FormControl, FormLabel, HStack, Input, InputGroup, InputRightElement, Tag, TagCloseButton, TagLabel, VStack } from '@chakra-ui/react'
 import React, { useState } from 'react'
 
 const Signup = () => {
@@ -9,8 +9,26 @@ const Signup = () => {
   const [password, setPassword] = useState();
   const [confirmpassword, setConfirmpassword] = useState();
   const [pic, setPic] = useState();
+  const [hobbies, setHobbies] = useState();
+  
+  let hobbiesArray = ["Test1", "Test2", "Nouveau"];
+  let hobbiesList = hobbiesArray.map((hobbiesArray) => 
+    <HStack spacing={4}>
+        <Tag
+        size='lg'
+        borderRadius='full'
+        variant='solid'
+        colorScheme='blue'
+        >
+        <TagLabel>{hobbiesArray}</TagLabel>
+        <TagCloseButton />
+        </Tag>
+    </HStack>
+  );
 
   const handleClick = () => setShow(!show);
+
+  const addToHobbies = () => setShow(!show);
 
   const postDetails = (pics) => {
 
@@ -21,7 +39,7 @@ const Signup = () => {
   };
 
   return (
-    <VStack spacing='5px'>
+    <VStack spacing='6px'>
         <FormControl id="first-name" isRequired>
             <FormLabel>Name</FormLabel>
             <Input
@@ -75,6 +93,22 @@ const Signup = () => {
             accept="image/*"
             onChange={(e) => postDetails(e.target.files[0])}
             />
+        </FormControl>
+        <FormControl id="hobbies" paddingBottom="15px">
+            <FormLabel>Hobbies</FormLabel>
+            <InputGroup size="md" minWidth="500px">
+                {hobbiesList}
+                <Input
+                    placeholder="Enter Your Hobbies"
+                    onChange={(e) => setHobbies(e.target.value)}
+                />
+                <InputRightElement width="4rem">
+                    <Button onClick={addToHobbies}>
+                        Add
+                    </Button>
+                </InputRightElement>
+            </InputGroup>
+                
         </FormControl>
 
         <Button
