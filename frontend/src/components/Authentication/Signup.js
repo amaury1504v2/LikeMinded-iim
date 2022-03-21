@@ -13,9 +13,9 @@ const Signup = () => {
   const [password, setPassword] = useState();
   const [confirmpassword, setConfirmpassword] = useState();
   const [pic, setPic] = useState();
-  const [hobbies, setHobbies] = useState([]);
-  //const [result, setResult] = useState([]);
+  const [result, setResult] = useState([]);
   const options = [ ];
+  const [hobbies, setHobbies] = useState([]);
   const [loading, setLoading] = useState(false)
   const toast = useToast();
   const history = useHistory();
@@ -69,6 +69,7 @@ const Signup = () => {
 
   const submitHandler = async () => {
     setLoading(true);
+    setHobbies(result.map(x => x.value))
     if (!name || !email || !password || !confirmpassword) {
       toast({
         title: "Please Fill all the Feilds",
@@ -187,9 +188,9 @@ const Signup = () => {
             <Box maxW="lg">
                 <Autocomplete
                 options={options}
-                result={hobbies}
+                result={result}
                 setResult={(options) => {
-                    setHobbies(options);
+                    setResult(options);
                 }}
                 placeholder="Enter a Hobby"
                 renderBadge={(option) => (
