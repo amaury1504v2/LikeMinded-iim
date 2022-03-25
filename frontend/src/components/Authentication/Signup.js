@@ -67,6 +67,9 @@ const Signup = () => {
     }
   };
 
+console.log(result)
+console.log(hobbies)
+
   const submitHandler = async () => {
     setLoading(true);
     setHobbies(result.map(x => x.value))
