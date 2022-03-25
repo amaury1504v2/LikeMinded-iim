@@ -1,11 +1,19 @@
 import { Box } from "@chakra-ui/react";
+import { useHistory } from "react-router-dom";
 import ChatBox from "../components/ChatBox";
 import AppHeader from "../components/miscellaneous/AppHeader";
 import MyChats from "../components/MyChats";
 import { ChatState } from "../Context/ChatProvider"
 
 const ChatPage = () => {
-  const { user } = ChatState();
+
+  const history = useHistory();
+
+  //const { user } = ChatState();
+  const user = JSON.parse(localStorage.getItem("userInfo"));
+  if (!user) {
+    history.push("/");
+  }
 
   return (
     <div style={{ width: "100%" }}>

@@ -2,7 +2,6 @@ import { Button, FormControl, FormLabel, Input, InputGroup, InputRightElement, u
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
-import { ChatState } from '../../Context/ChatProvider';
 
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -12,16 +11,8 @@ const Login = () => {
 
   const toast = useToast();
   const history = useHistory();
-  const { user } = ChatState();
 
   const handleClick = () => setShow(!show);
-
-  console.log("test")
-  const usertest = JSON.parse(localStorage.getItem("userInfo"));
-
-    if (usertest) {
-        history.push("/meet");
-    }
 
   const submitHandler = async () => {
     setLoading(true);
@@ -61,10 +52,7 @@ const Login = () => {
       });
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
-      if(user){
-        console.log("connecté")
-        history.push("/");
-      }
+      history.push("/meet");
     } catch (error) {
       toast({
         title: "Error Occured!",

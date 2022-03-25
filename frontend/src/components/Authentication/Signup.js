@@ -15,19 +15,13 @@ const Signup = () => {
   const [pic, setPic] = useState();
   const [result, setResult] = useState([]);
   const options = [
-    { value: 'Cuisine', label: 'Cuisine' },
-    { value: 'Sport', label: 'Sport' },
-    { value: 'Video games', label: 'Video games' },
     { value: 'Music', label: 'Music' },
   ];
-  //const [hobbies, setHobbies] = useState([]);
   const [loading, setLoading] = useState(false)
   const toast = useToast();
   const history = useHistory();
 
-  const handleClick = () => {
-    setShow(!show);
-  }
+  const handleClick = () => setShow(!show);
 
   const postDetails = (pics) => {
     setLoading(true);

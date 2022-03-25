@@ -11,7 +11,8 @@ const AppHeader = () => {
   const [searchResult, setSearchResult] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadingChat, setLoadingChat] = useState(false);
-  
+
+  //const { user } = ChatState();
   const user = JSON.parse(localStorage.getItem("userInfo"));
   const history = useHistory();
 
