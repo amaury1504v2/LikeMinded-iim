@@ -14,13 +14,20 @@ const Signup = () => {
   const [confirmpassword, setConfirmpassword] = useState();
   const [pic, setPic] = useState();
   const [result, setResult] = useState([]);
-  const options = [ ];
-  const [hobbies, setHobbies] = useState([]);
+  const options = [
+    { value: 'Cuisine', label: 'Cuisine' },
+    { value: 'Sport', label: 'Sport' },
+    { value: 'Video games', label: 'Video games' },
+    { value: 'Music', label: 'Music' },
+  ];
+  //const [hobbies, setHobbies] = useState([]);
   const [loading, setLoading] = useState(false)
   const toast = useToast();
   const history = useHistory();
 
-  const handleClick = () => setShow(!show);
+  const handleClick = () => {
+    setShow(!show);
+  }
 
   const postDetails = (pics) => {
     setLoading(true);
@@ -67,12 +74,9 @@ const Signup = () => {
     }
   };
 
-console.log(result)
-console.log(hobbies)
-
   const submitHandler = async () => {
     setLoading(true);
-    setHobbies(result.map(x => x.value))
+    let hobbies = result.map(x => x.value)
     if (!name || !email || !password || !confirmpassword) {
       toast({
         title: "Please Fill all the Feilds",
