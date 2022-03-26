@@ -30,9 +30,9 @@ const AppHeader = () => {
         bg="white"
         w="100%"
         p="5px 10px 5px 10px"
-        borderWidth="5px"
+        borderWidth="3px"
       >
-        <Text fontSize="2xl" fontFamily="Work sans">
+        <Text fontSize="2xl" fontFamily="Work sans" px={2}>
           LikeMinded
         </Text>
         <Box
@@ -42,11 +42,11 @@ const AppHeader = () => {
             w="25%"
         >
             <Button variant="ghost">
-                <i class="far fa-comment"></i>
+                <i class="far fa-comment" style={{ paddingRight: "8px" }}></i>
                 <p>Chats</p>
             </Button>
             <Button variant="ghost">
-                <i class="fas fa-users"></i>
+                <i class="fas fa-users" style={{ paddingRight: "8px" }}></i>
                 <p>Users</p>
             </Button> 
         </Box>
