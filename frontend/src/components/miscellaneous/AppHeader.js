@@ -22,6 +22,14 @@ const AppHeader = () => {
     history.push("/");
   };
 
+  const redirectChats = () => {
+    history.push("/chats");
+  };
+
+  const redirectMeet = () => {
+    history.push("/meet");
+  };
+
   return (
     <Box
         d="flex"
@@ -41,11 +49,11 @@ const AppHeader = () => {
             alignItems="center"
             w="25%"
         >
-            <Button variant="ghost">
+            <Button variant="ghost" onClick={redirectChats}>
                 <i class="far fa-comment" style={{ paddingRight: "8px" }}></i>
                 <p>Chats</p>
             </Button>
-            <Button variant="ghost">
+            <Button variant="ghost" onClick={redirectMeet}>
                 <i class="fas fa-users" style={{ paddingRight: "8px" }}></i>
                 <p>Users</p>
             </Button> 

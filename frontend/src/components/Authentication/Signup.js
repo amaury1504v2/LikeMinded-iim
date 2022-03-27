@@ -14,9 +14,7 @@ const Signup = () => {
   const [confirmpassword, setConfirmpassword] = useState();
   const [pic, setPic] = useState();
   const [result, setResult] = useState([]);
-  const options = [
-    { value: 'Music', label: 'Music' },
-  ];
+  const options = [ ];
   const [loading, setLoading] = useState(false)
   const toast = useToast();
   const history = useHistory();

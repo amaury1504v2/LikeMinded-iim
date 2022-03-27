@@ -18,7 +18,7 @@ const MeetPage = () => {
   return (
     <div style={{ width: "100%" }}>
       {user && <AppHeader/>}
-      <Box d="flex" justifyContent="center" w="100%" h="91.5vh" p="10px">
+      <Box d="flex" justifyContent="center" w="100%" h="93vh" p="10px" overflowY="scroll">
         {user && <UsersList/>}
       </Box>
     </div>

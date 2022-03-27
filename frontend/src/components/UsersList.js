@@ -1,13 +1,14 @@
-import { Box, Button, Input, useToast } from '@chakra-ui/react';
+import { Box, Button, Input, Spinner, useToast } from '@chakra-ui/react';
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ChatState } from '../Context/ChatProvider';
 import ChatLoading from './ChatLoading';
 import UserListItem from './UserAvatar/UserListItem';
 
 const UsersList = () => {
 
-  const { user } = ChatState();
+  const { setSelectedChat, chats, setChats } = ChatState();
+  const user = JSON.parse(localStorage.getItem("userInfo"));
 
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
@@ -17,7 +18,7 @@ const UsersList = () => {
   const toast = useToast();
 
   const handleSearch = async () => {
-    if (!search) {
+    /*if (!search) {
       toast({
         title: "Please Enter something in search",
         status: "warning",
@@ -26,7 +27,7 @@ const UsersList = () => {
         position: "bottom",
       });
       return;
-    }
+    }*/
 
     try {
       setLoading(true);
@@ -53,10 +54,41 @@ const UsersList = () => {
     }
   };
 
-  const accessChat = (userId) => {};
+  const accessChat = async (userId) => {
+    console.log(userId);
+
+    try {
+      setLoadingChat(true);
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
+      const { data } = await axios.post(`/api/chat`, { userId }, config);
+
+      if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
+      setSelectedChat(data);
+      setLoadingChat(false);
+      //history.push("/chats");
+    } catch (error) {
+      toast({
+        title: "Error fetching the chat",
+        description: error.message,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+    }
+  };
+
+  useEffect(() => {
+    handleSearch();
+  }, []);
 
   return (
-    <Box w="40%">
+    <Box w={{ base: "100%", md: "40%" }}>
       <Box maxW="75%" mx="auto" d="flex" justifyContent="space-between" alignItems="center" h="7vh" pb={2}>
         <i class="fas fa-search" style={{ padding: "8px" }}></i>
         <Input
@@ -79,6 +111,7 @@ const UsersList = () => {
           ))
         )
       }
+      {loadingChat && <Spinner ml="auto" d="flex" />}
     </Box>
   );
 };
