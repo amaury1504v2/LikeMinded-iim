@@ -4,11 +4,15 @@ import React, { useEffect, useState } from 'react'
 import { ChatState } from '../Context/ChatProvider';
 import ChatLoading from './ChatLoading';
 import UserListItem from './UserAvatar/UserListItem';
+import { useHistory } from 'react-router-dom';
 
 const UsersList = () => {
 
-  const { setSelectedChat, chats, setChats } = ChatState();
+  const { setSelectedChat } = ChatState();
+  const [chats, setChats] = useState([]);
   const user = JSON.parse(localStorage.getItem("userInfo"));
+
+  const history = useHistory();
 
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
@@ -70,7 +74,7 @@ const UsersList = () => {
       if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
       setSelectedChat(data);
       setLoadingChat(false);
-      //history.push("/chats");
+      history.push("/chats");
     } catch (error) {
       toast({
         title: "Error fetching the chat",

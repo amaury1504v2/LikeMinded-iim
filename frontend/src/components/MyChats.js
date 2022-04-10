@@ -2,16 +2,21 @@ import { Box, Button, Stack, Text, useToast } from '@chakra-ui/react';
 import { AddIcon } from "@chakra-ui/icons";
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { getSender } from '../config/ChatLogics';
+//import { getSender } from '../config/ChatLogics';
 import { ChatState } from '../Context/ChatProvider';
 import ChatLoading from './ChatLoading';
 
 const MyChats = () => {
 
   const [loggedUser, setLoggedUser] = useState();
-  const { selectedChat, setSelectedChat, chats, setChats } = ChatState();
+  const [chats, setChats] = useState([]);
+  const { selectedChat, setSelectedChat } = ChatState();
   const user = JSON.parse(localStorage.getItem("userInfo"));
   const toast = useToast();
+
+  const getSender = (loggedUser, users) => {
+    return users[0]._id === loggedUser._id ? users[1].name : users[0].name;
+  };
 
   const fetchChats = async () => {
     // console.log(user._id);
