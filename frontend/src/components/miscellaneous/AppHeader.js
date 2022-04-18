@@ -50,11 +50,11 @@ const AppHeader = () => {
             w="25%"
         >
             <Button variant="ghost" onClick={redirectChats}>
-                <i class="far fa-comment" style={{ paddingRight: "8px" }}></i>
+                <i className="far fa-comment" style={{ paddingRight: "8px" }}></i>
                 <p>Chats</p>
             </Button>
             <Button variant="ghost" onClick={redirectMeet}>
-                <i class="fas fa-users" style={{ paddingRight: "8px" }}></i>
+                <i className="fas fa-users" style={{ paddingRight: "8px" }}></i>
                 <p>Users</p>
             </Button> 
         </Box>
