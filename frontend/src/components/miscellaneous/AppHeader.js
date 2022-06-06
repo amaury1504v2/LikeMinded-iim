@@ -1,16 +1,10 @@
 import { BellIcon, ChevronDownIcon } from '@chakra-ui/icons';
 import { Avatar, Box, Button, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Text } from '@chakra-ui/react';
-import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
-import { ChatState } from '../../Context/ChatProvider';
+//import { ChatState } from '../../Context/ChatProvider';
 import ProfileModal from './ProfileModal';
 
 const AppHeader = () => {
-
-  const [search, setSearch] = useState("");
-  const [searchResult, setSearchResult] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [loadingChat, setLoadingChat] = useState(false);
 
   //const { user } = ChatState();
   const user = JSON.parse(localStorage.getItem("userInfo"));

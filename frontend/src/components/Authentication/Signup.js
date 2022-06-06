@@ -1,7 +1,7 @@
 import { Box, Button, FormControl, FormLabel, Input, InputGroup, InputRightElement, VStack, Badge, useToast } from '@chakra-ui/react'
 import React, { useState } from 'react';
 import { Autocomplete } from 'chakra-ui-simple-autocomplete';
-import { CheckCircleIcon, CloseIcon, SmallAddIcon } from "@chakra-ui/icons";
+import { CloseIcon } from "@chakra-ui/icons";
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
