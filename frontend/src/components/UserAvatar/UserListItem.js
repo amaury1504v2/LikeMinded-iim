@@ -6,6 +6,7 @@ const UserListItem = ({ user, handleFunction }) => {
     let userHobbies = user.hobbies
     let hobbiesList = userHobbies.map((userHobbies) =>
         <Tag
+        key={userHobbies}
         borderRadius='full'
         variant='subtle'
         colorScheme='blue'
