@@ -68,6 +68,7 @@ const AppHeader = () => {
                     onClick={() => {
                       setSelectedChat(notif.chat);
                       setNotification(notification.filter((n) => n !== notif));
+                      redirectChats();
                     }}
                   >
                     {notif.chat.isGroupChat
