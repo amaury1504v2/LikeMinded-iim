@@ -1,18 +1,13 @@
 import { BellIcon, ChevronDownIcon } from '@chakra-ui/icons';
 import { Avatar, Box, Button, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Text } from '@chakra-ui/react';
-import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
+import { getSender } from '../../config/ChatLogics';
 import { ChatState } from '../../Context/ChatProvider';
 import ProfileModal from './ProfileModal';
 
 const AppHeader = () => {
 
-  const [search, setSearch] = useState("");
-  const [searchResult, setSearchResult] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [loadingChat, setLoadingChat] = useState(false);
-
-  //const { user } = ChatState();
+  const { notification, setNotification, setSelectedChat } = ChatState();
   const user = JSON.parse(localStorage.getItem("userInfo"));
   const history = useHistory();
 
@@ -61,13 +56,26 @@ const AppHeader = () => {
         <div>
           <Menu>
             <MenuButton p={1}>
-              Notif
+              {notification.length>0 && <span style={{ backgroundColor: "red", color:"white", padding: "1px 6px", borderRadius: "50%", fontWeight: "bold" }}>{notification.length}</span>}
               <BellIcon fontSize="2xl" m={1} />
             </MenuButton>
 
             <MenuList pl={2}>
-                <MenuItem>test
-                </MenuItem>
+                {!notification.length && "No New Messages"}
+                {notification.map((notif) => (
+                  <MenuItem
+                    key={notif._id}
+                    onClick={() => {
+                      setSelectedChat(notif.chat);
+                      setNotification(notification.filter((n) => n !== notif));
+                      redirectChats();
+                    }}
+                  >
+                    {notif.chat.isGroupChat
+                      ? `New Message in ${notif.chat.chatName}`
+                      : `New Message from ${getSender(user, notif.chat.users)}`}
+                  </MenuItem>
+                ))}
             </MenuList>
           </Menu>
           

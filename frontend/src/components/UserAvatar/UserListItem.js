@@ -1,4 +1,4 @@
-import { Avatar, Box, HStack, Tag, TagLabel, Text } from '@chakra-ui/react'
+import { Avatar, Box, Tag, TagLabel, Text } from '@chakra-ui/react'
 import React from 'react'
 
 const UserListItem = ({ user, handleFunction }) => {
@@ -6,6 +6,7 @@ const UserListItem = ({ user, handleFunction }) => {
     let userHobbies = user.hobbies
     let hobbiesList = userHobbies.map((userHobbies) =>
         <Tag
+        key={userHobbies}
         borderRadius='full'
         variant='subtle'
         colorScheme='blue'
