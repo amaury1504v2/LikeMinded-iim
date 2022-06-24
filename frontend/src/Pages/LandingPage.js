@@ -322,8 +322,9 @@ import {
                     <Button style={{backgroundColor: "#00ffffff"}}>Voir tous les groupes</Button>
                 </Box>
                 <Box style={{background: `url('../images/blue2.png')`, backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}}>
-                    
+
                 </Box>
+                {/*  */}
             </Box>
 
             
